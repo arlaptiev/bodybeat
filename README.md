@@ -1,17 +1,12 @@
-# STACK:
+Deploy no CD:
 
-CRA, Tailwind CSS, Github Pages, Eslint
+```
+gcloud builds submit --tag gcr.io/artemfyi/bodybeat
+```
 
-Minor:
-OG tags, Router, Fonts, Tailwind Typography
+```
+gcloud run deploy --image gcr.io/artemfyi/bodybeat --platform managed
+```
 
-Potential todos:
-* add analytics
-* cannot automatically modify manifest.json as of CRA 5 :c
-
-# Starting:
-
-1. .env
-2. package.json
-3. public/manifest.json
+region: europe-west1 (15)
 
