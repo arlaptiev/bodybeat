@@ -24,7 +24,7 @@ export default function PoseNet() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      analysePoses(poses, setPoseAnalysis);
+      // analysePoses(poses, setPoseAnalysis);
     }, 500);
     return () => clearInterval(timer);
   });
@@ -32,14 +32,17 @@ export default function PoseNet() {
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
-    p5.createCanvas(500, 500).parent(canvasParentRef);
+    let canvas = p5.createCanvas(500, 500).parent(canvasParentRef);
+    canvas.id("canvasOutput")
+    canvas.position(0,0);
 
     // p5.createCanvas(640, 480);
-    video = p5.createCapture(p5.VIDEO);
-    video.size(width, height);
+    // video = p5.createCapture(p5.VIDEO);
+    // video.size(width, height);
     // setVideo(video);
 
 
+    video = document.getElementById('videoInput')
     // Create a new poseNet method with a single detection
     poseNet = ml5.poseNet(video, modelReady, {});
     // This sets up an event that fills the global variable "poses"
@@ -52,12 +55,14 @@ export default function PoseNet() {
   };
 
   const draw = (p5) => {
-    let video = p5._elements[1]
-    if (video === undefined) {
-      debugger;
-    }
+    // let video = p5._elements[1]
+    // if (video === undefined) {
+    //   debugger;
+    // }
 
-    p5.image(video, 0, 0, p5.width, p5.height);
+
+    p5.clear()
+    // p5.image(video, 0, 0, p5.width, p5.height);
 
     // We can call both functions to draw all keypoints and the skeletons
     drawKeypoints(p5, poses);
@@ -70,7 +75,7 @@ export default function PoseNet() {
   };
 
   return <>
-      <Visuals poseAnalysis={poseAnalysis}/>
+      {/*<Visuals poseAnalysis={poseAnalysis}/>*/}
       <p id="status">Loading model...</p>
       <Sketch setup={setup} draw={draw}/>
     </>;

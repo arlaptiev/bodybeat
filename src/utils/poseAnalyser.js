@@ -12,7 +12,6 @@ export function analysePoses(poses, setPoseAnalysis) {
 
   poseAnalysis['poses'] = []
   for (const pose of poses) {
-    debugger;
     let dict = {}
 
     let lw = pose['pose']['leftWrist'], ls = pose['pose']['leftShoulder'], rw = pose['pose']['rightWrist'], rs = pose['pose']['rightShoulder'];

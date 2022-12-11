@@ -15,3 +15,14 @@ Potential todos:
 2. package.json
 3. public/manifest.json
 
+
+Setup:
+Add these lines to `node_modules/react-scripts/config/webpack.config.js` (from [here](https://bobbyhadz.com/blog/module-not-found-cant-resolve-fs):
+```
+      fallback: {
+        "fs": false,
+        "os": false,
+        "path": false,
+        "crypto": false,
+      },
+```
