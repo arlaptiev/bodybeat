@@ -9,11 +9,12 @@ const ENERGY_LEVEL_THRESHOLD = {
 
 class Selector {
   constructor(player) {
+    this.ready = false
     this.player = player
     this.library = {
       tracks: {
-        0: [{filename: '130_Synth_Loop_15_134_SP.wav'}],
-        1: [{filename: '130_Cm_Melodic_SPFT_126_05.wav'}],
+        0: [{filename: '130_Synth_Loop_15_134_SP_dvqp8a.wav'}],
+        1: [{filename: '130_Cm_Melodic_SPFT_126_05_k9f2zx.wav'}],
         2: [],
         3: [],
         4: []
@@ -34,6 +35,7 @@ class Selector {
   init() {
     this.composition.tracks[0].push({filename: '130_Synth_Loop_15_134_SP.wav'})
     this.addLoop(this.composition.tracks[0][0])
+    this.ready = true
   }
 
   calcEnergy(input) {

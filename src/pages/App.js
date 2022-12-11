@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Player from '../utils/player';
 import Selector from '../utils/selector';
+import PoseNet from "../components/PoseNet";
 
 function App() {
   const tracks = [
@@ -14,6 +15,7 @@ function App() {
 
   const player = new Player(tracks, options)
   const selector = new Selector(player)
+  window.selector = selector
 
   return (
     <div class="container m-auto">

@@ -6,8 +6,6 @@ let beta = 0.7
 let mean_mag = 0
 let ewma_mag = 0
 
-// Worker for async
-const myWorker = new Worker('worker.js');
 
 function run_camera_flow() {
 
@@ -76,6 +74,9 @@ function run_camera_flow() {
       mean_mag = cv.mean(mag)[0]
       ewma_mag = beta * ewma_mag + (1 - beta) * mean_mag
       console.log(ewma_mag)
+      if (window.selector.ready) {
+        window.selector.process(ewma_mag)
+      }
       u.delete(); v.delete();
       ang.convertTo(hsv0, cv.CV_8UC1, 180/Math.PI/2);
       cv.normalize(mag, hsv2, 0, 255, cv.NORM_MINMAX, cv.CV_8UC1);
