@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Player from '../utils/player';
 import Selector from '../utils/selector';
+import PoseNet from "../components/PoseNet";
 
 function App() {
   const tracks = [
@@ -13,7 +14,8 @@ function App() {
 
   const player = new Player(tracks, options)
   const selector = new Selector(player)
-  
+  window.selector = selector
+
   return (
     <div class="container m-auto">
       <p class="text-center text-6xl font-bold mt-44"> BodyBeat </p>
@@ -22,6 +24,7 @@ function App() {
         <button class="bg-orange-200 p-2" onClick={() => selector.init()}>START2</button>
         <button class="bg-orange-200 p-2" onClick={() => selector.process(2)}>ADDENERGY</button>
         <button class="bg-orange-200 p-2" onClick={() => selector.process(0)}>REMOVEENERGY</button>
+        <PoseNet/>
         {/* <button class="bg-orange-200 p-2" onClick={() => player.startOnBar(tracks[0].filename)}>QUEUE1</button>
         <button class="bg-orange-200 p-2" onClick={() => player.startOnBar(tracks[1].filename)}>QUEUE2</button>
         <button class="bg-orange-200 p-2" onClick={() => player.startAll()}>STARTALL</button>
