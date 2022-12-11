@@ -9,7 +9,6 @@ function App() {
   ]
   const options = {
     bpm: 130,
-    // barLength: 4000,
   }
 
   const player = new Player(tracks, options)
@@ -27,7 +26,7 @@ function App() {
         <button class="bg-orange-200 p-2" onClick={() => player.startOnBar(tracks[1].filename)}>QUEUE2</button>
         <button class="bg-orange-200 p-2" onClick={() => player.startAll()}>STARTALL</button>
         <button class="bg-orange-200 p-2" onClick={() => player.stopAll()}>STOPALL</button>
-        <button class="bg-orange-200 p-2" onClick={() => player.setParamFunction(tracks[0].filename, 'gain', 0, 4)}>CHANGEGAIN1</button> */} */}
+        <button class="bg-orange-200 p-2" onClick={() => player.setParamFunction(tracks[0].filename, 'gain', 0, 4)}>CHANGEGAIN1</button> */}
       </div>
     </div>
   );
