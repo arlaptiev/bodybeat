@@ -42,7 +42,7 @@ function processLib(library) {
 }
 
 
-const library = processLib({
+const library1 = processLib({
   tracks: {
     0: [
       'looperman-l-0000003-0000058-serialchiller-chilla-acid-de-la-playa-bass.wav',
@@ -100,7 +100,7 @@ const library2 = processLib({
 })
 
 let library = library1
-if (Math.random() > 0.3) { library = library2 }
+if (Math.random() > 0.5) { library = library2 }
 const initTracks = [library.tracks[0][0]]
 
 // init sound module
