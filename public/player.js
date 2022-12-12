@@ -11,7 +11,7 @@ class Player {
   }
 
   async loadTrack(trackData) {
-    return fetch(this.libraryUrl + trackData.energy + '/' + trackData.filename)
+    return fetch(this.libraryUrl + trackData.filename)
         .then((response) => response.arrayBuffer())
         .then((arrayBuffer) => this.context.decodeAudioData(arrayBuffer))
         .then((audioBuffer) => {
