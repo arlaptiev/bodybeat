@@ -1,9 +1,33 @@
 // options
 const playerOptions = { bpm: 130, libraryUrl: '/audio/' }
 const selectorOptions = {
-  MIN_ENERGY: 0,
-  MAX_ENERGY: 3,
-  ENERGY_LEVEL_THRESHOLD: { 0: 2, 1: 3, 2: 4 }
+  ENERGY_LEVEL_THRESHOLD: { 0: 2, 1: 3, 2: 4 },
+  TRANSITIONS: {
+    out: {
+      funcs: [
+        {item: 'set', weight: 6},
+        {item: 'linear', weight: 2},
+        {item: 'exponential', weight: 2},
+      ],
+      durations: [
+        {item: 1, weight: 6},
+        {item: 2, weight: 2},
+        {item: 3, weight: 2}
+      ]
+    },
+    in: {
+      funcs: [
+        {item: 'set', weight: 8},
+        {item: 'linear', weight: 1},
+        {item: 'exponential', weight: 1},
+      ],
+      durations: [
+        {item: 1, weight: 1},
+        {item: 2, weight: 1},
+        {item: 3, weight: 1}
+      ]
+    }
+  }
 }
 
 const libString = `
