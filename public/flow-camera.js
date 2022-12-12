@@ -6,6 +6,9 @@ let beta = 0.7
 let mean_mag = 0
 let ewma_mag = 0
 
+let sensitivity = 0.5
+console.log('sensitivity', sensitivity)
+
 function run_camera_flow(outputFunc) {
 
   let video = document.getElementById("videoInput"); // video is the id of video tag
@@ -74,7 +77,7 @@ function run_camera_flow(outputFunc) {
       ewma_mag = beta * ewma_mag + (1 - beta) * mean_mag
 
       // pass the output
-      outputFunc(ewma_mag)
+      outputFunc(ewma_mag * sensitivity)
     
       u.delete(); v.delete();
       ang.convertTo(hsv0, cv.CV_8UC1, 180/Math.PI/2);

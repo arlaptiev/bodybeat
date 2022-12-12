@@ -31,6 +31,7 @@
 
 #canvasOutput.p5Canvas{
   padding-right: calc((100vw - 133vh) / 2);
+  width: calc(133vh + (100vw - 133vh) / 2) !important;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
