@@ -41,7 +41,7 @@ class Player {
       .connect(gainNode)
       .connect(this.context.destination);
 
-    gainNode.gain.value = params.gain
+    gainNode.gain.value = params.gain / 4
     track.source.loop = true;
     track.source.playbackRate.value = 1;
     track.source.start(time);  // there might be a problem with tracks started at different times: move this after all are prepared 
@@ -65,7 +65,9 @@ class Player {
 
   stopOnBar(name, offsetBars=0) {
     const track = this.tracks[name]
-    track.source.stop(this.nextBar + (this.nextBar - this.lastBar) * offsetBars)
+    if (track) {
+      track.source.stop(this.nextBar + (this.nextBar - this.lastBar) * offsetBars)
+    }
   }
 
   startAll() {
