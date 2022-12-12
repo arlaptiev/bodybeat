@@ -1,7 +1,7 @@
 // options
 const playerOptions = {bpm: 130, libraryUrl: '/audio/'}
 const selectorOptions = {
-  ENERGY_LEVEL_THRESHOLD: { 0: 2, 1: 3, 2: 4 },
+  ENERGY_LEVEL_THRESHOLD: {0: 2, 1: 3, 2: 4},
   MAX_ENERGY: 3,
   TRANSITIONS: {
     out: {
@@ -61,7 +61,6 @@ const library1 = processLib({
       'looperman-l-0000003-0000094-serialchiller-chilla-synth-skank-riff.wav',
     ],
     2: [
-      'looperman-l-0000003-0000057-serialchiller-chilla-acid-de-la-playa-arp.wav',
       'looperman-l-0000003-0000065-serialchiller-chilla-pulse-bass.wav',
       'looperman-l-0000003-0000090-serialchiller-chilla-synth-pulse-2.wav',
     ],
@@ -75,21 +74,35 @@ const library1 = processLib({
 const library = processLib({
   tracks: {
     0: [
-      'looperman-l-0303420-0021825-snloops-s-n-2step-of-looperman-piano-riff.wav',
+      // 'looperman-l-1564425-0099227-rasputin1963-techno-synth-groove.wav',
+      'looperman-l-0457896-0048564-tunegirl-gated-hats.wav',
+
+      // 'looperman-l-0303420-0021825-snloops-s-n-2step-of-looperman-piano-riff.wav',
     ],
     1: [
-       'looperman-l-0303420-0021825-snloops-s-n-2step-of-looperman-piano-riff.wav',
+      'looperman-l-1470676-0093386-alexmoaca-percussion-watergate-berlin-alex-lucien-moaca.wav',
+      'looperman-l-1470676-0093385-alexmoaca-single-shot-w-a-t-e-r-g-a-t-e-berlin-alex-lucien-moaca.wav',
+
+      'looperman-l-0000014-0000117-bentleyrhythmace-bra-punch-bass.wav',
+      'looperman-l-0589833-0050077-mmedia-techno-loop-2-130-bpm.wav',
+      'looperman-l-0457896-0048564-tunegirl-gated-hats.wav',
+      'looperman-l-0690654-0053339-saba1192-simple-drums-t.wav',
+
     ],
     2: [
-       'looperman-l-0000014-0000117-bentleyrhythmace-bra-punch-bass.wav',
-       'looperman-l-0002663-0049425-djfredval-fv-bass-line13-130.wav',
-       'looperman-l-1319133-0128084-fanto8bc-techno-kick.wav',
-       'looperman-l-2612885-0229522-basic-techno-drum-loop.wav',
+
+      'looperman-l-1319133-0095194-fanto8bc-rose-drum.wav',
+      'looperman-l-0002663-0049425-djfredval-fv-bass-line13-130.wav',
+      'looperman-l-1319133-0128084-fanto8bc-techno-kick.wav',
+      'looperman-l-2612885-0229522-basic-techno-drum-loop.wav',
     ],
     3: [
-       'looperman-l-0158495-0051179-edge7-slither-8.wav',
-       'looperman-l-1319133-0095203-fanto8bc-i-found-the-snare.wav',
-       'looperman-l-2830941-0203999-pop-techno-style-ii-by-kidlas.wav',
+      'looperman-l-5117166-0308931-techno-reverb-rumble-kick-5.wav',
+      'looperman-l-0158495-0051179-edge7-slither-8.wav',
+      'looperman-l-1319133-0095203-fanto8bc-i-found-the-snare.wav',
+      'looperman-l-2039625-0165266-dark-techno-kick-3.wav',
+
+      // 'looperman-l-2830941-0203999-pop-techno-style-ii-by-kidlas.wav',
     ],
   }
 })

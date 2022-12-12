@@ -41,7 +41,7 @@ class Player {
       .connect(gainNode)
       .connect(this.context.destination);
 
-    gainNode.gain.value = params.gain / 2
+    gainNode.gain.value = params.gain
     track.source.loop = true;
     track.source.playbackRate.value = 1;
     track.source.start(time);  // there might be a problem with tracks started at different times: move this after all are prepared 
