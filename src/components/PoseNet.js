@@ -37,14 +37,11 @@ export default function PoseNet() {
       poses = results;
     });
     // Hide the video element, and just show the canvas
-    // video_.hide();
+    // video.hide();
   };
 
   const draw = (p5) => {
     p5.clear()
-
-    p5.stroke(255, 0, 0);
-    p5.line(0, 0, 100, 100);
 
     // We can call both functions to draw all keypoints and the skeletons
     drawKeypoints(p5, poses);
