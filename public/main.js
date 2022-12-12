@@ -62,7 +62,7 @@ console.log(processLib(library))
 
 // init sound module
 const player = new Player(playerOptions)
-const selector = new Selector(player, processLib(library), selectorOptions)
+const selector = new Selector(player, library, selectorOptions)
 
 function initSound() {
   player.startAll()
