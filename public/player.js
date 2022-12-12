@@ -26,7 +26,7 @@ class Player {
         });
   }
 
-  start(track, time) {
+  start(track, time, params) {
     if (track.source) {
       track.source.stop();
     }
@@ -41,35 +41,31 @@ class Player {
       .connect(gainNode)
       .connect(this.context.destination);
 
-    gainNode.gain.value = 0.5
+    gainNode.gain.value = params.gain
     track.source.loop = true;
     track.source.playbackRate.value = 1;
     track.source.start(time);  // there might be a problem with tracks started at different times: move this after all are prepared 
   }
 
-  setParamFunction(trackName, paramName, value, overNBars, toStop=false, func_name='linear') {
+  setParamFunction(trackName, paramName, value, overNBars, func_name='linear') {
     const track = this.tracks[trackName]
     let setValueFunctions = {
       'set': track.params[paramName].setValueAtTime,
-      'linear': track.params[paramName].linearRampToValueAtTime,
-      'exponential': track.params[paramName].exponentialRampToValueAtTime
+      'linear': track.params[paramName].linearRampToValueAtTime
     }
     track.params[paramName].cancelScheduledValues(this.context.currentTime)
     const paramChangeTime = this.context.currentTime + (this.nextBar - this.lastBar) * overNBars
     setValueFunctions[func_name].call(track.params[paramName], value, paramChangeTime)
-    if (toStop) {
-      track.source.stop(paramChangeTime)
-    }
   }
 
-  startOnBar(name) {
+  startOnBar(name, params={gain: 0.5}) {
     const track = this.tracks[name]
-    this.start(track, this.nextBar)
+    this.start(track, this.nextBar, params)
   }
 
-  stopOnBar(name) {
+  stopOnBar(name, offsetBars=0) {
     const track = this.tracks[name]
-    track.source.stop(this.nextBar)
+    track.source.stop(this.nextBar + (this.nextBar - this.lastBar) * offsetBars)
   }
 
   startAll() {

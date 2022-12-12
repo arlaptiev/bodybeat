@@ -3,6 +3,7 @@ class Selector {
     this.ready = false
     this.player = player
     this.library = library
+    this.lastEnergyChangeTime = null
     this.o = this.options2o(options)
     this.composition = {
       energy: 0,
@@ -15,7 +16,8 @@ class Selector {
     */
     if (this.ready === false) {
       for (const trackName in initTracks) {
-        this.addLoop(initTracks[trackName])
+        const inTransition = this.createTransition(false)
+        this.addLoop(initTracks[trackName], inTransition)
       }
       this.ready = true
       console.log('initted selector')
@@ -30,15 +32,19 @@ class Selector {
     this.composition.energy++
     const options = this.library.tracks[this.composition.energy]
     const track = options[Math.floor(Math.random() * options.length)]
-    this.addLoop(track)
+    const inTransition = this.createTransition(false)
+    this.addLoop(track, inTransition)
+    this.lastEnergyChangeTime = Date.now()
   }
 
   decrementEnergyLevel() {
     this.composition.energy--
     const playingTracks = this.composition.tracks[this.composition.energy + 1]
     for (const trackName in playingTracks) {
-      this.removeLoop(playingTracks[trackName])
+      const outTransition = this.createTransition(true)
+      this.removeLoop(playingTracks[trackName], outTransition)
     }
+    this.lastEnergyChangeTime = Date.now()
   }
 
   process(input) {
@@ -46,30 +52,33 @@ class Selector {
     // register events
     // maybe add randomness
     let inputEnergy = this.calcEnergy(input)
-    if (this.composition.energy < this.o.MAX_ENERGY && inputEnergy > this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy]) { 
+    if (this.composition.energy < this.o.MAX_ENERGY 
+      && inputEnergy > this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy]) { 
       this.incrementEnergyLevel()
     }
-    if (this.composition.energy > 0 && inputEnergy < this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy - 1]) { 
+    if (this.composition.energy > 0 
+      && inputEnergy < this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy - 1]
+      && Date.now() - this.lastEnergyChangeTime > 1000) { 
       this.decrementEnergyLevel()
     }
     // process continuous input
   }
 
-  addLoop(track) {
+  addLoop(track, transition) {
     this.composition.tracks[track.energy][track.filename] = track
     if (track.filename in this.player.tracks) {
-      this.player.startOnBar(track.filename)
+      transition.in(track.filename)
     } else {
       this.player.loadTrack(track)
         .then(() => {
-          this.player.startOnBar(track.filename)
+          transition.in(track.filename)
         })
     }
   }
 
-  removeLoop(track) {
+  removeLoop(track, transition) {
+    transition.out(track.filename)
     delete this.composition.tracks[track.energy][track.filename]
-    this.player.stopOnBar(track.filename)
   }
 
   /* HELPERS 
@@ -85,5 +94,53 @@ class Selector {
       tracks[i] = {}
     }
     return tracks
+  }
+
+  createTransition(isOut) {
+    let func = weighted_random(this.o.TRANSITIONS.in.funcs)
+    let duration = weighted_random(this.o.TRANSITIONS.in.durations)
+    if (isOut) {
+      func = weighted_random(this.o.TRANSITIONS.out.funcs)
+      duration = weighted_random(this.o.TRANSITIONS.out.durations)
+    }
+    return new Transition(func, duration, this.player)
+  }
+}
+
+function weighted_random(options) {
+  var i;
+
+  var weights = [];
+
+  for (i = 0; i < options.length; i++)
+      weights[i] = options[i].weight + (weights[i - 1] || 0);
+  
+  var random = Math.random() * weights[weights.length - 1];
+  
+  for (i = 0; i < weights.length; i++)
+      if (weights[i] > random)
+          break;
+  
+  return options[i].item;
+}
+
+class Transition {
+  constructor(func, duration, player) {
+    this.func = func
+    this.duration = duration
+    this.player = player
+  }
+
+  in(trackName) {
+    this.player.startOnBar(trackName)
+  }
+
+  out(trackName) {
+    if (this.func === 'set') {
+      this.player.stopOnBar(trackName)
+    } else { 
+      this.player.setParamFunction(trackName, 'gain', 0, this.duration, this.func)
+      this.player.stopOnBar(trackName, this.duration)
+    }
   }
 }
