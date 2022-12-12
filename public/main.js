@@ -75,15 +75,21 @@ const library1 = processLib({
 const library2 = processLib({
   tracks: {
     0: [
+      'looperman-l-0000014-0000117-bentleyrhythmace-bra-punch-bass.wav'
     ],
     1: [
        'looperman-l-0303420-0021825-snloops-s-n-2step-of-looperman-piano-riff.wav',
+       'looperman-l-0000014-0000107-bentleyrhythmace-bra-pitch-synth-loop',
+       'looperman-l-0244049-0023904-antyon-simple-techno-drum-loop',
+       'looperman-l-0303420-0021817-snloops-s-n-2stepmx-of-looperman-dr-loop2'
     ],
     2: [
-       'looperman-l-0000014-0000117-bentleyrhythmace-bra-punch-bass.wav',
        'looperman-l-0002663-0049425-djfredval-fv-bass-line13-130.wav',
        'looperman-l-1319133-0128084-fanto8bc-techno-kick.wav',
        'looperman-l-2612885-0229522-basic-techno-drum-loop.wav',
+       'looperman-l-0063133-0007723-rogueai-hypnotic-subsonic-130.wav',
+       'looperman-l-0082073-0004394-mrrobot-hell-gate-tb-303.wav',
+       'looperman-l-0141892-0006249-evolutionmix-techno-cowbels-drum-plus-drum.wav'
     ],
     3: [
        'looperman-l-0158495-0051179-edge7-slither-8.wav',
@@ -93,8 +99,8 @@ const library2 = processLib({
   }
 })
 
-
-console.log(library)
+let library = library1
+if (Math.random() > 0.3) { library = library2 }
 const initTracks = [library.tracks[0][0]]
 
 // init sound module
