@@ -82,7 +82,7 @@ function run_camera_flow(outputFunc) {
       cv.merge(hsvVec, hsv);
       cv.cvtColor(hsv, rgb, cv.COLOR_HSV2RGB);
       cv.flip(rgb, rgb_flipped, 1)
-      cv.imshow('canvasOutput', rgb);
+      cv.imshow('canvasOutput', rgb_flipped);
       next.copyTo(prvs);
 
       // schedule the next one.
