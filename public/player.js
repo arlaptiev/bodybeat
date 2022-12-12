@@ -49,13 +49,15 @@ class Player {
 
   setParamFunction(trackName, paramName, value, overNBars, func_name='linear') {
     const track = this.tracks[trackName]
-    let setValueFunctions = {
-      'set': track.params[paramName].setValueAtTime,
-      'linear': track.params[paramName].linearRampToValueAtTime
+    if (track) {
+      let setValueFunctions = {
+        'set': track.params[paramName].setValueAtTime,
+        'linear': track.params[paramName].linearRampToValueAtTime
+      }
+      track.params[paramName].cancelScheduledValues(this.context.currentTime)
+      const paramChangeTime = this.context.currentTime + (this.nextBar - this.lastBar) * overNBars
+      setValueFunctions[func_name].call(track.params[paramName], value, paramChangeTime)
     }
-    track.params[paramName].cancelScheduledValues(this.context.currentTime)
-    const paramChangeTime = this.context.currentTime + (this.nextBar - this.lastBar) * overNBars
-    setValueFunctions[func_name].call(track.params[paramName], value, paramChangeTime)
   }
 
   startOnBar(name, params={gain: 0.5}) {

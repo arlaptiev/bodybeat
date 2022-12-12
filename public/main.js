@@ -107,8 +107,8 @@ const library = processLib({
   }
 })
 
-
-console.log(library)
+let library = library1
+if (Math.random() > 0.5) { library = library2 }
 const initTracks = [library.tracks[0][0]]
 
 // init sound module
