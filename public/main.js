@@ -2,6 +2,7 @@
 const playerOptions = {bpm: 130, libraryUrl: '/audio/'}
 const selectorOptions = {
   ENERGY_LEVEL_THRESHOLD: { 0: 2, 1: 3, 2: 4 },
+  MAX_ENERGY: 3,
   TRANSITIONS: {
     out: {
       funcs: [
@@ -43,7 +44,7 @@ function processLib(library) {
 const library = processLib({
   tracks: {
     0: [
-      'looperman-l-0000003-0000058-serialchiller-chilla-acid-de-la-playa-bass.wav',
+      // 'looperman-l-0000003-0000058-serialchiller-chilla-acid-de-la-playa-bass.wav',
       'looperman-l-0000003-0000085-serialchiller-chilla-dream-pad-1.wav',
       'looperman-l-0000003-0000086-serialchiller-chilla-dream-pad-2.wav',
     ],
@@ -78,9 +79,8 @@ const library = processLib({
   }
 })
 
-const initTracks = [library.tracks[0][0]]
 console.log(library)
-console.log(processLib(library))
+const initTracks = [library.tracks[0][0]]
 
 // init sound module
 const player = new Player(playerOptions)

@@ -6,7 +6,7 @@ let beta = 0.7
 let mean_mag = 0
 let ewma_mag = 0
 
-let sensitivity = 0.5
+let sensitivity = 1
 console.log('sensitivity', sensitivity)
 
 function run_camera_flow(outputFunc) {
