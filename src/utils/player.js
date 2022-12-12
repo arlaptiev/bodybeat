@@ -16,7 +16,7 @@ class Player {
   }
 
   async loadTrack(trackData) {
-    return fetch(process.env.REACT_APP_MEDIA_LIB_URL + trackData.filename)
+    return fetch(trackData.filename)
         .then((response) => response.arrayBuffer())
         .then((arrayBuffer) => this.context.decodeAudioData(arrayBuffer))
         .then((audioBuffer) => {

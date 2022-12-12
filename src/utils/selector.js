@@ -13,8 +13,8 @@ class Selector {
     this.player = player
     this.library = {
       tracks: {
-        0: [{filename: '130_Synth_Loop_15_134_SP_dvqp8a.wav'}],
-        1: [{filename: '130_Cm_Melodic_SPFT_126_05_k9f2zx.wav'}],
+        0: [{filename: 'loops/130_Synth_Loop_15_134_SP_dvqp8a.wav'}],
+        1: [{filename: 'loops/130_Cm_Melodic_SPFT_126_05_k9f2zx.wav'}],
         2: [],
         3: [],
         4: []

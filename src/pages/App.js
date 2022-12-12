@@ -5,8 +5,8 @@ import PoseNet from "../components/PoseNet";
 
 function App() {
   const tracks = [
-    {filename: '130_Cm_Melodic_SPFT_126_05.wav'},
-    {filename: '130_Synth_Loop_15_134_SP.wav'}
+    {filename: 'loops/130_Synth_Loop_15_134_SP_dvqp8a.wav'},
+    {filename: 'loops/130_Cm_Melodic_SPFT_126_05_k9f2zx.wav'}
   ]
   const options = {
     bpm: 130,

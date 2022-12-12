@@ -1,5 +1,5 @@
-let height = 600
-let width = 800
+let height = 300
+let width = 400
 
 function run_camera() {
   let video = document.getElementById("videoInput"); // video is the id of video tag
