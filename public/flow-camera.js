@@ -6,6 +6,8 @@ let beta = 0.7
 let mean_mag = 0
 let ewma_mag = 0
 
+let sensitivity = 0.5
+console.log('sensitivity', sensitivity)
 
 function run_camera_flow(outputFunc) {
 
@@ -48,6 +50,7 @@ function run_camera_flow(outputFunc) {
   let mag = new cv.Mat(video.height, video.width, cv.CV_32FC1);
   let ang = new cv.Mat(video.height, video.width, cv.CV_32FC1);
   let rgb = new cv.Mat(video.height, video.width, cv.CV_8UC3);
+  let rgb_flipped = new cv.Mat(video.height, video.width, cv.CV_8UC3);
 
   let streaming = true;
 
@@ -74,14 +77,15 @@ function run_camera_flow(outputFunc) {
       ewma_mag = beta * ewma_mag + (1 - beta) * mean_mag
 
       // pass the output
-      outputFunc(ewma_mag)
+      outputFunc(ewma_mag * sensitivity)
     
       u.delete(); v.delete();
       ang.convertTo(hsv0, cv.CV_8UC1, 180/Math.PI/2);
       cv.normalize(mag, hsv2, 0, 255, cv.NORM_MINMAX, cv.CV_8UC1);
       cv.merge(hsvVec, hsv);
       cv.cvtColor(hsv, rgb, cv.COLOR_HSV2RGB);
-      cv.imshow('canvasOutput', rgb);
+      cv.flip(rgb, rgb_flipped, 1)
+      cv.imshow('canvasOutput', rgb_flipped);
       next.copyTo(prvs);
 
       // schedule the next one.

@@ -24,7 +24,7 @@ export default function PoseNet() {
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
-    let canvas = p5.createCanvas(500, 500).parent(canvasParentRef);
+    let canvas = p5.createCanvas(400, 300).parent(canvasParentRef);
     canvas.id("canvasOutput")
     canvas.position(0,0);
 
@@ -37,14 +37,11 @@ export default function PoseNet() {
       poses = results;
     });
     // Hide the video element, and just show the canvas
-    // video_.hide();
+    // video.hide();
   };
 
   const draw = (p5) => {
     p5.clear()
-
-    p5.stroke(255, 0, 0);
-    p5.line(0, 0, 100, 100);
 
     // We can call both functions to draw all keypoints and the skeletons
     drawKeypoints(p5, poses);

@@ -11,7 +11,7 @@ export function drawKeypoints(p5, poses) {
       if (keypoint.score > 0.2) {
         p5.fill(255, 255, 255);
         p5.noStroke();
-        p5.ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
+        p5.ellipse(keypoint.position.x, keypoint.position.y, 3, 3);
       }
     }
   }

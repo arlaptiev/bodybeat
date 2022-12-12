@@ -10,7 +10,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,3 +18,21 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+#videoInput {
+  display: none;
+}
+
+#canvasOutput, #canvasOutput.p5Canvas{
+  margin:auto !important;
+  width: 133vh !important;
+  height: 100vh !important;
+}
+
+#canvasOutput.p5Canvas{
+  padding-right: calc((100vw - 133vh) / 2);
+  width: calc(133vh + (100vw - 133vh) / 2) !important;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
