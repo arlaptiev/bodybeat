@@ -51,8 +51,7 @@ class Player {
     const track = this.tracks[trackName]
     let setValueFunctions = {
       'set': track.params[paramName].setValueAtTime,
-      'linear': track.params[paramName].linearRampToValueAtTime,
-      'exponential': track.params[paramName].exponentialRampToValueAtTime
+      'linear': track.params[paramName].linearRampToValueAtTime
     }
     track.params[paramName].cancelScheduledValues(this.context.currentTime)
     const paramChangeTime = this.context.currentTime + (this.nextBar - this.lastBar) * overNBars

@@ -7,7 +7,6 @@ const selectorOptions = {
       funcs: [
         {item: 'set', weight: 6},
         {item: 'linear', weight: 2},
-        {item: 'exponential', weight: 2},
       ],
       durations: [
         {item: 1, weight: 6},
@@ -19,7 +18,6 @@ const selectorOptions = {
       funcs: [
         {item: 'set', weight: 8},
         {item: 'linear', weight: 1},
-        {item: 'exponential', weight: 1},
       ],
       durations: [
         {item: 1, weight: 1},

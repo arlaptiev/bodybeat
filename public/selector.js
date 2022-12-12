@@ -3,8 +3,8 @@ class Selector {
     this.ready = false
     this.player = player
     this.library = library
+    this.lastEnergyChangeTime = null
     this.o = this.options2o(options)
-    this.transitions = this.createTransitions(options)
     this.composition = {
       energy: 0,
       tracks: this.options2tracks(options) // object with energy levels as keys and an object of track objects as a value
@@ -16,7 +16,8 @@ class Selector {
     */
     if (this.ready === false) {
       for (const trackName in initTracks) {
-        this.addLoop(initTracks[trackName])
+        const inTransition = this.createTransition(false)
+        this.addLoop(initTracks[trackName], inTransition)
       }
       this.ready = true
       console.log('initted selector')
@@ -33,6 +34,7 @@ class Selector {
     const track = options[Math.floor(Math.random() * options.length)]
     const inTransition = this.createTransition(false)
     this.addLoop(track, inTransition)
+    this.lastEnergyChangeTime = Date.now()
   }
 
   decrementEnergyLevel() {
@@ -42,6 +44,7 @@ class Selector {
       const outTransition = this.createTransition(true)
       this.removeLoop(playingTracks[trackName], outTransition)
     }
+    this.lastEnergyChangeTime = Date.now()
   }
 
   process(input) {
@@ -49,10 +52,13 @@ class Selector {
     // register events
     // maybe add randomness
     let inputEnergy = this.calcEnergy(input)
-    if (this.composition.energy < this.o.MAX_ENERGY && inputEnergy > this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy]) { 
+    if (this.composition.energy < this.o.MAX_ENERGY 
+      && inputEnergy > this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy]) { 
       this.incrementEnergyLevel()
     }
-    if (this.composition.energy > 0 && inputEnergy < this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy - 1]) { 
+    if (this.composition.energy > 0 
+      && inputEnergy < this.o.ENERGY_LEVEL_THRESHOLD[this.composition.energy - 1]
+      && Date.now() - this.lastEnergyChangeTime > 1000) { 
       this.decrementEnergyLevel()
     }
     // process continuous input
@@ -71,8 +77,8 @@ class Selector {
   }
 
   removeLoop(track, transition) {
-    delete this.composition.tracks[track.energy][track.filename]
     transition.out(track.filename)
+    delete this.composition.tracks[track.energy][track.filename]
   }
 
   /* HELPERS 
@@ -97,7 +103,7 @@ class Selector {
       func = weighted_random(this.o.TRANSITIONS.out.funcs)
       duration = weighted_random(this.o.TRANSITIONS.out.durations)
     }
-    return Transition(func, duration, this.player)
+    return new Transition(func, duration, this.player)
   }
 }
 
@@ -131,6 +137,8 @@ class Transition {
 
   out(trackName) {
     if (this.func === 'set') {
+      this.player.stopOnBar(trackName)
+    } else { 
       this.player.setParamFunction(trackName, 'gain', 0, this.duration, this.func)
       this.player.stopOnBar(trackName, this.duration)
     }
