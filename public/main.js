@@ -42,10 +42,10 @@ function processLib(library) {
 }
 
 
-const library = processLib({
+const library1 = processLib({
   tracks: {
     0: [
-      'looperman-l-0000003-0000058-serialchiller-chilla-acid-de-la-playa-bass.wav',
+      // 'looperman-l-0000003-0000058-serialchiller-chilla-acid-de-la-playa-bass.wav',
       'looperman-l-0000003-0000085-serialchiller-chilla-dream-pad-1.wav',
       'looperman-l-0000003-0000086-serialchiller-chilla-dream-pad-2.wav',
     ],
@@ -72,9 +72,10 @@ const library = processLib({
   }
 })
 
-const library2 = processLib({
+const library = processLib({
   tracks: {
     0: [
+      'looperman-l-0303420-0021825-snloops-s-n-2step-of-looperman-piano-riff.wav',
     ],
     1: [
        'looperman-l-0303420-0021825-snloops-s-n-2step-of-looperman-piano-riff.wav',
