@@ -42,7 +42,7 @@ function processLib(library) {
 }
 
 
-const library1 = processLib({
+const library = processLib({
   tracks: {
     0: [
       'looperman-l-0000003-0000058-serialchiller-chilla-acid-de-la-playa-bass.wav',
