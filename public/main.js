@@ -71,7 +71,7 @@ const library1 = processLib({
   }
 })
 
-const library = processLib({
+const library2 = processLib({
   tracks: {
     0: [
       // 'looperman-l-1564425-0099227-rasputin1963-techno-synth-groove.wav',
