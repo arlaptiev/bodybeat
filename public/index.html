@@ -27,14 +27,23 @@
     <meta property="twitter:description" content="%REACT_APP_DESCRIPTION%">
     <meta property="twitter:image" content="%REACT_APP_OG_IMAGE%">
 
-
 </head>
 <body>
 
 <noscript>You need to enable JavaScript to run this app.</noscript>
 
-<div id="root"></div>
 
+<div class="container m-auto">
+    <p class="text-center text-6xl font-bold mt-44"> BodyBeat </p>
+    <canvas id="canvasOutput" width="800" height="600"></canvas>
+    <video id="videoInput" width="800" height="600"></video>
+    <canvas id="canvasFrame" width="800" height="600"></canvas>
+    <p id="status">OpenCV.js is loading...</p>
+
+    <button onclick="initSound()">Start</button>
+
+</div>
+<div id="root"></div>
 
 <script src="player.js" type="text/javascript"></script>
 <script src="selector.js" type="text/javascript"></script>
@@ -45,16 +54,6 @@
 
 <script src="https://docs.opencv.org/4.5.0/opencv.js" type="text/javascript" onload="console.log('OpenCV Loaded')"></script>
 
-
-<div class="container m-auto">
-    <p class="text-center text-6xl font-bold mt-44"> BodyBeat </p>
-    <canvas id="canvasOutput" width="800" height="600"></canvas>
-    <video id="videoInput" width="800" height="600"></video>
-    <canvas id="canvasFrame" width="800" height="600"></canvas>
-    <span id="status"></span>
-    <button onclick="initSound()">Start</button>
-
-</div>
 
 </body>
 </html>

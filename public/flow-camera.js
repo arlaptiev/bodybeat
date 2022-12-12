@@ -6,7 +6,6 @@ let beta = 0.7
 let mean_mag = 0
 let ewma_mag = 0
 
-
 function run_camera_flow(outputFunc) {
 
   let video = document.getElementById("videoInput"); // video is the id of video tag
