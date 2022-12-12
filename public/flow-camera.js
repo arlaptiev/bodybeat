@@ -47,6 +47,7 @@ function run_camera_flow(outputFunc) {
   let mag = new cv.Mat(video.height, video.width, cv.CV_32FC1);
   let ang = new cv.Mat(video.height, video.width, cv.CV_32FC1);
   let rgb = new cv.Mat(video.height, video.width, cv.CV_8UC3);
+  let rgb_flipped = new cv.Mat(video.height, video.width, cv.CV_8UC3);
 
   let streaming = true;
 
@@ -80,6 +81,7 @@ function run_camera_flow(outputFunc) {
       cv.normalize(mag, hsv2, 0, 255, cv.NORM_MINMAX, cv.CV_8UC1);
       cv.merge(hsvVec, hsv);
       cv.cvtColor(hsv, rgb, cv.COLOR_HSV2RGB);
+      cv.flip(rgb, rgb_flipped, 1)
       cv.imshow('canvasOutput', rgb);
       next.copyTo(prvs);
 
