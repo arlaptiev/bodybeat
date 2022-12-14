@@ -9,6 +9,7 @@ const selectorOptions = {
 const libString = `
 looperman-l-0000014-0000117-bentleyrhythmace-bra-punch-bass.wav 0
 looperman-l-0158495-0051179-edge7-slither-8.wav 1
+looperman-l-0457896-0048564-tunegirl-gated-hats.wav 1
 looperman-l-0002663-0049425-djfredval-fv-bass-line13-130.wav 3
 looperman-l-1319133-0128084-fanto8bc-techno-kick.wav 2
 looperman-l-2830941-0203999-pop-techno-style-ii-by-kidlas.wav 1
@@ -16,7 +17,24 @@ looperman-l-0303420-0021825-snloops-s-n-2step-of-looperman-piano-riff.wav 2
 looperman-l-1319133-0100750-fanto8bc-the-commandery.wav 3
 looperman-l-2612885-0229522-basic-techno-drum-loop.wav 2
 looperman-l-1319133-0095203-fanto8bc-i-found-the-snare.wav 1
+looperman-l-0589833-0050077-mmedia-techno-loop-2-130-bpm.wav 1
+looperman-l-0690654-0053339-saba1192-simple-drums-t.wav 1
+looperman-l-0000014-0000117-bentleyrhythmace-bra-punch-bass.wav 1
+looperman-l-0589833-0050077-mmedia-techno-loop-2-130-bpm.wav 1
+looperman-l-0690654-0053339-saba1192-simple-drums-t.wav 1
+looperman-l-1319133-0095194-fanto8bc-rose-drum.wav 2
+looperman-l-1319133-0128084-fanto8bc-techno-kick.wav 2
+looperman-l-2612885-0229522-basic-techno-drum-loop.wav 2
+looperman-l-5117166-0308931-techno-reverb-rumble-kick-5.wav 3
+looperman-l-0158495-0051179-edge7-slither-8.wav 3
+looperman-l-1319133-0095203-fanto8bc-i-found-the-snare.wav 3
+looperman-l-2039625-0165266-dark-techno-kick-3.wav 3
+
 `
+
+
+
+
 function libString2Lib(s, energy) {
   const tracks = s.split('\n').splice(1).slice(0, -1)
   const selected = []
