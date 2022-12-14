@@ -68,8 +68,12 @@ class Selector {
   }
 
   removeLoop(track) {
-    delete this.composition.tracks[track.energy][track.filename]
-    this.player.stopOnBar(track.filename)
+    if (track.filename in this.player.tracks) {
+      delete this.composition.tracks[track.energy][track.filename]
+      this.player.stopOnBar(track.filename)
+    } else {
+      this.composition.energy += 1
+    }
   }
 
   /* HELPERS 
